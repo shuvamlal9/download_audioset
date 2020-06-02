@@ -10,21 +10,13 @@ AudioSet consists of an expanding ontology of 632 audio event classes and a coll
 
 When I first tried to download this dataset, I had some trouble getting the raw audio files. Google released most of the files as features that they extracted (via the AudioSet Embedding), but did not give access to raw .wav files. So, I made a script to make it easy to download this dataset locally on your computer or on a server. 
 
-The as_download.py script thus downloads and converts all the audio files in the AudioSet dataset from the YouTube to make it easy to do data science and modeling on this data. Specifically, it downloads the audio from the video files and clips these audio files at the designated time points and arranges all the classes into folders. 
-
-If you're looking for some models built from these folders, check out the [audioset-models](https://github.com/jim-schwoebel/audioset_models) repository.
-
-Note that if you are in China, these scripts may not work due to the Great Firewall and blocking YouTube as a website. If you are in China, I recommend using [proxychains](https://linuxhint.com/proxychains-tutorial/) and [shadowsocks servers](https://en.wikipedia.org/wiki/Shadowsocks).
+The as_download.py script thus downloads and converts all the audio files in the AudioSet dataset from the YouTube to make it easy to do data science and modeling on this data. Specifically, it downloads the audio from the video files and clips these audio files at the designated time points and arranges all the classes into folders.
 
 ## Downloading audio files 
 
 Here are some quick checks 
 * Make sure you have roughly 35 GB of free space on your hard disk. You'll need roughly this much space before continuing.
 * This section assumes you are on a mac computer. 
-
-If you don't have homebrew installed, type this into the terminal:
-
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 Now, type this into your terminal (to download the balanced dataset):
     
@@ -43,6 +35,16 @@ Alternatively, you could download the unbalanced dataset:
     python3 as_download_unbalanced.py 
 
 This could take up to a month to download all the audio files completely ^, so I wouldn't recommend downloading the unbalanced dataset unless you have an external hard disk or another storage medium to store the files. Note if you exit the script and re-run it later, it will continue where the download left off (based on # of audio files downloaded thus far in the loop), and it has an easy-to-see progress bar using tqdm.
+
+## Run this project on Colab
+Adding this part, as this will remove the complexities of server banning.
+1. Go through the ```setup.py``` file and install the required libraries using ```!pip install module_name```.
+2. Setup shell congfiguration and run the python script like
+    ```
+        %%shell
+        python as_download_unbalanced.py
+    ```
+Using Colab will be boon, as you can easily handle the files by mounting your Google Drive ;)
 
 ```
 1%|▎                                                     | 6681/1048573 [01:11<129:14:33,  2.24it/s]/m/09x0r
@@ -591,13 +593,6 @@ The result will be a folder structure like this (32,418,497,718 bytes / 32.45 GB
     Zing
     Zipper(clothing)
     Zither
-
-## Feedback
-Any feedback this repository is greatly appreciated. 
-* If you find something that is missing or doesn't work, please consider opening a [GitHub issue](https://github.com/jim-schwoebel/download_audioset/issues).
-* If you want to learn more about voice computing, check out [Voice Computing in Python](https://github.com/jim-schwoebel/voicebook) book.
-* If you'd like to be mentored by someone on our team, check out the [Innovation Fellows Program](http://neurolex.ai/research).
-* If you want to talk to me directly, please send me an email @ js@neurolex.co. 
 
 ## License
 This repository is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0). 
